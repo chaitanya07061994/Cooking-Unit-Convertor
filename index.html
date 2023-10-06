@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cooking Unit Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+         background-image: url(https://images.pexels.com/photos/1414651/pexels-photo-1414651.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
+
+}
+
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            text-align: center;
+            background-color: #ffffff;
+            border: 2px solid #007BFF;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #007BFF;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #result {
+            font-weight: bold;
+            font-size: 18px;
+            margin-top: 20px;
+            color: #007BFF;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Cooking Unit Converter</h1>
+        <div>
+            <label for="unitType">Select Unit Type:</label>
+            <select id="unitType">
+                <option value="cups">Cups</option>
+                <option value="tablespoons">Tablespoons</option>
+                <option value="teaspoons">Teaspoons</option>
+                <option value="milliliters">Milliliters</option>
+                <option value="grams">Grams</option>
+                <option value="ounces">Ounces</option>
+            </select>
+        </div>
+        <div>
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" placeholder="Enter quantity">
+        </div>
+        <button onclick="convert()">Convert</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function convert() {
+            const unitType = document.getElementById("unitType").value;
+            const quantity = parseFloat(document.getElementById("quantity").value);
+
+            if (isNaN(quantity)) {
+                document.getElementById("result").textContent = "Please enter a valid quantity.";
+                return;
+            }
+
+            let result = 0;
+            switch (unitType) {
+                case "cups":
+                    result = quantity * 236.588;
+                    break;
+                case "tablespoons":
+                    result = quantity * 14.787;
+                    break;
+                case "teaspoons":
+                    result = quantity * 4.929;
+                    break;
+                case "milliliters":
+                    result = quantity;
+                    break;
+                case "grams":
+                    result = quantity;
+                    break;
+                case "ounces":
+                    result = quantity * 28.3495;
+                    break;
+                default:
+                    break;
+            }
+
+            document.getElementById("result").textContent = `${quantity} ${unitType} is approximately ${result.toFixed(2)} milliliters or grams.`;
+        }
+    </script>
+</body>
+</html>
